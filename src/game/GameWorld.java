@@ -5,10 +5,12 @@ import city.cs.engine.World;
 
 public class GameWorld extends World{
     World room;
+    Game frame;
     public void play(World room, UserView view){
-
-        GameView background = new GameView(this, 800, 600);
+// GameView background = new GameView(this, 800, 600, false, false);
         //background.paintBackground();
+        //background.mainMenu();
+
 
         Enemy eyeball = new Enemy(room);
         Player player = new Player(room, 100, 1, 5);

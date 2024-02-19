@@ -16,18 +16,20 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 // Makes a new game
 public class Game{
 
-
+JFrame frame;
 
     //Initialises a new game
     public Game() {
 
 
         World room = new World();
+        GameWorld world = new GameWorld();
 
 
 
         //make a window
         UserView view = new UserView(room, 800, 600);
+
 
 /*
         // makes the background image
@@ -74,6 +76,11 @@ public class Game{
         // makes a title for the window
         final JFrame frame = new JFrame("Cat Quest");
         frame.add(view);
+        GameView background = new GameView(world, 800, 600, false, false);
+        //background.paintBackground();
+        background.mainMenu();
+
+
 
         JFrame debugView = new DebugViewer(room, 800, 600);
 
@@ -95,7 +102,7 @@ public class Game{
 
         // start our game world simulation!
         room.start();
-        GameWorld world = new GameWorld();
+        //GameWorld world = new GameWorld();
         world.play(room, view);
 
         //GameView background = new GameView(room, this, 800, 600);
@@ -142,6 +149,12 @@ public class Game{
 
     }
 
+    public JFrame getFrame(){
+        return frame;
+    }
+
+
+
     /** Run the game. */
     public static void main(String[] args) {
 
@@ -149,5 +162,7 @@ public class Game{
 
         new Game();
     }
+
+
 }
 
