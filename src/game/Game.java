@@ -76,13 +76,13 @@ JFrame frame;
         // makes a title for the window
         final JFrame frame = new JFrame("Cat Quest");
         frame.add(view);
-        GameView background = new GameView(world, 800, 600, false, false);
+        GameView background = new GameView(world, 800, 600, false, false, view);
         //background.paintBackground();
-        background.mainMenu();
+        //background.mainMenu();
 
 
 
-        JFrame debugView = new DebugViewer(room, 800, 600);
+        //JFrame debugView = new DebugViewer(room, 800, 600);
 
         // enable the frame to quit the application
         // when the x button is pressed

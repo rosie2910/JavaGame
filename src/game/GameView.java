@@ -4,11 +4,13 @@ import city.cs.engine.UserView;
 import city.cs.engine.World;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class GameView extends UserView {
     private ImageIcon background;
     private JFrame backgroundFrame;
+    int gameState;
+    int titleState = 0;
+    int playState = 1;
 
 
     private JLabel backgroundLabel;
@@ -18,13 +20,40 @@ public class GameView extends UserView {
     private Game game;
     private World world;
 
+
     boolean start = false;
     boolean help = false;
 
-    public GameView(GameWorld game, int width, int height, boolean start, boolean help) {
+    public GameView(GameWorld game, int width, int height, boolean start, boolean help, UserView view) {
         super(game, width, height);
+        gameState = playState;
+        /*
+        background = new ImageIcon("data/Level1BG.jpeg");
+        backgroundLabel = new JLabel(background);
+        backgroundLabel.setSize(800,600);
+        backgroundFrame = new JFrame("Cat Quest");
+        backgroundFrame.add(backgroundLabel);
+        backgroundFrame.set
 
-        backgroundFrame = new JFrame("abc");
+         */
+        backgroundFrame = new JFrame("Cat Quest");
+        //backgroundFrame.add(view);
+
+        if(gameState == titleState){
+            mainMenu();
+            backgroundFrame.pack();
+            backgroundFrame.setVisible(true);
+        }
+        else{
+            levelBackground();
+            backgroundFrame.pack();
+            backgroundFrame.setVisible(true);
+        }
+
+
+
+
+
 
     }
 
@@ -46,6 +75,12 @@ public class GameView extends UserView {
 
 
     }
+
+    public JFrame getBackgroundFrame(){
+        return backgroundFrame;
+    }
+
+
 /*
     @Override
     protected void paintBackground(Graphics2D g) {

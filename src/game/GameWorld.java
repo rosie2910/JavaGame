@@ -1,15 +1,21 @@
 package game;
 
+import city.cs.engine.DebugViewer;
 import city.cs.engine.UserView;
 import city.cs.engine.World;
 
+import javax.swing.*;
+
 public class GameWorld extends World{
     World room;
+    //Game frame;
     Game frame;
     public void play(World room, UserView view){
 // GameView background = new GameView(this, 800, 600, false, false);
         //background.paintBackground();
         //background.mainMenu();
+
+        JFrame debugView = new DebugViewer(room, 800, 600);
 
 
         Enemy eyeball = new Enemy(room);
