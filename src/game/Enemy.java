@@ -6,7 +6,7 @@ import org.jbox2d.common.Vec2;
 import java.util.concurrent.TimeUnit;
 
 
-public class Enemy extends Walker {
+public class Enemy extends DynamicBody {
     int hp = 25;
     int damage = 5;
     boolean dead = false;
@@ -26,7 +26,13 @@ public class Enemy extends Walker {
         this.setGravityScale(0);
         this.addImage(image);
         this.setPosition(new Vec2(this.getEnX(), this.getEnY()));
-        this.startWalking(2);
+        //this.startWalking(2);
+    }
+
+    public void walk(int enX, int enY, Player player){
+        this.setPosition(new Vec2(enX, enY));
+        enX++;
+        setEnX(enX);
     }
 
     public int getEnY() {

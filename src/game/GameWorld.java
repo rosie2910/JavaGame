@@ -14,8 +14,13 @@ public class GameWorld extends World{
         Player player = new Player(room, 100, 1, 5);
         KeyMover playerMover = new KeyMover(view, player);
 
-        for(int i = 0; i < 5; i++) {
-
+        for(int i = 0; i < 10; i++) {
+            eyeball.walk(eyeball.getEnX(), eyeball.getEnY(), player);
+            try{
+                Thread.sleep(500);
+            } catch (InterruptedException e){
+                throw new RuntimeException(e);
+            }
             EnemyProjectile projectile = new EnemyProjectile(room, player, eyeball);
             projectile.attack(player, playerMover);
             try {
@@ -24,6 +29,9 @@ public class GameWorld extends World{
                 throw new RuntimeException(e);
             }
             projectile.destroy();
+
+
+
         }
 
 
