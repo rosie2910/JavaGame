@@ -1,48 +1,46 @@
 package game;
 
-import city.cs.engine.DebugViewer;
-import city.cs.engine.UserView;
 import city.cs.engine.World;
+import city.cs.engine.WorldView;
 
 import javax.swing.*;
 
-public class GameWorld extends World{
-    World room;
-    //Game frame;
-    Game frame;
-    public void play(World room, UserView view){
-// GameView background = new GameView(this, 800, 600, false, false);
-        //background.paintBackground();
-        //background.mainMenu();
+public class GameWorld extends World {
+    JFrame frame;
+    WorldView view;
+    Player player;
+    Enemy enemy;
+    EnemyProjectile projectile;
 
-        JFrame debugView = new DebugViewer(room, 800, 600);
+    public GameWorld(JFrame frame, WorldView view){
+        this.frame = frame;
 
+        player = new Player(this);
+        enemy = new Enemy(this, view);
 
-        Enemy eyeball = new Enemy(room);
-        Player player = new Player(room, 100, 1, 5);
-        KeyMover playerMover = new KeyMover(view, player);
+    }
 
-        for(int i = 0; i < 10; i++) {
-            eyeball.walk(eyeball.getEnX(), eyeball.getEnY(), player);
+    public void play(Game game){
+        for(int i = 0; i < 5; i++){
+            projectile = new EnemyProjectile(this, player, enemy);
+            projectile.attack(player, enemy);
             try{
-                Thread.sleep(500);
-            } catch (InterruptedException e){
-                throw new RuntimeException(e);
-            }
-            EnemyProjectile projectile = new EnemyProjectile(room, player, eyeball);
-            projectile.attack(player, playerMover);
-            try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             projectile.destroy();
-
-
-
         }
 
-
-
     }
+
+    public void setPlayer(){
+        this.player = player;
+    }
+
+    public Player getPlayer(){
+        return player;
+    }
+
+
 }

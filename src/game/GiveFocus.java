@@ -1,20 +1,24 @@
 package game;
 
 import city.cs.engine.UserView;
+import city.cs.engine.WorldView;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class GiveFocus implements MouseListener {
 
-    private UserView view;
+    private WorldView view;
 
-    public GiveFocus(UserView v){
+    public GiveFocus(WorldView v){
+
         this.view = v;
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
 
     }
 
