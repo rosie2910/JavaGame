@@ -11,6 +11,7 @@ public class GameWorld extends World {
     Player player;
     Enemy enemy;
     EnemyProjectile projectile;
+    GenericCollisionListener gcl;
 
     public GameWorld(JFrame frame, WorldView view){
         this.frame = frame;
@@ -24,6 +25,9 @@ public class GameWorld extends World {
         for(int i = 0; i < 5; i++){
             projectile = new EnemyProjectile(this, player, enemy);
             projectile.attack(player, enemy);
+            gcl = new GenericCollisionListener(player, projectile);
+            player.addCollisionListener(gcl);
+
             try{
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
