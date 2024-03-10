@@ -33,7 +33,7 @@ public class Game {
         frame.add(view);
         //frame.add(backgroundImage);
 
-        KeyMover playerMover = new KeyMover(view, world.getPlayer());
+        KeyMover playerMover = new KeyMover(view, world.getPlayer(), world.getEnemy(), world);
         //view.requestFocus();
         view.addKeyListener(playerMover);
 

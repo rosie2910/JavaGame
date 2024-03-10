@@ -8,7 +8,7 @@ public class EnemyProjectile extends DynamicBody {
     private static final BodyImage projectile = new BodyImage("data/projectile1.png", 1);
     private static final Shape projShape = new CircleShape(0.1f);
 
-    public EnemyProjectile(GameWorld world, Player player, Enemy enemy){
+    public EnemyProjectile(GameWorld world, Player player, Enemy enemy) {
         super(world);
         GhostlyFixture gf = new GhostlyFixture(this, projShape);
         ShootSensor shootSensor = new ShootSensor(player, this);
@@ -22,16 +22,12 @@ public class EnemyProjectile extends DynamicBody {
     }
 
 
-    public void attack(Player player, Enemy enemy){
+    public void attack(Player player, Enemy enemy) {
         this.setLinearVelocity(new Vec2(player.getCharX() - enemy.getPosition().x, player.getCharY() - enemy.getPosition().y));
-        this.applyForce(new Vec2(5,5), new Vec2(player.getCharX() - enemy.getPosition().x, player.getCharY() - enemy.getPosition().y));
-        //this.isBullet();
-        //this.setBullet(true);
-
+        this.applyForce(new Vec2(5, 5), new Vec2(player.getCharX() - enemy.getPosition().x, player.getCharY() - enemy.getPosition().y));
 
     }
-
-
 }
+
 
 

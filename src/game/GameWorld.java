@@ -19,15 +19,16 @@ public class GameWorld extends World {
         player = new Player(this);
         enemy = new Enemy(this, view);
 
+
     }
 
     public void play(Game game){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 7; i++){
             projectile = new EnemyProjectile(this, player, enemy);
             projectile.attack(player, enemy);
             gcl = new GenericCollisionListener(player, projectile);
             player.addCollisionListener(gcl);
-
+            //projectile.addCollisionListener(gcl);
             try{
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
@@ -44,6 +45,14 @@ public class GameWorld extends World {
 
     public Player getPlayer(){
         return player;
+    }
+
+    public void setEnemy(){
+        this.enemy = enemy;
+    }
+
+    public Enemy getEnemy(){
+        return enemy;
     }
 
 

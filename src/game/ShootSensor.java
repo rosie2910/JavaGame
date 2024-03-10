@@ -14,15 +14,18 @@ public class ShootSensor implements SensorListener {
 
     @Override
     public void beginContact(SensorEvent sensorEvent) {
-        player.setHp(player.getHp() - 15);
-        System.out.println(player.getHp());
+        if(sensorEvent.getContactBody() instanceof  Player) {
+            player.setHp(player.getHp() - 15);
+            System.out.println(player.getHp());
+            projectile.destroy();
+        }
 
     }
 
     @Override
     public void endContact(SensorEvent sensorEvent) {
 
-        projectile.destroy();
+
     }
 
 
