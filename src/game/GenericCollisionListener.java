@@ -16,6 +16,7 @@ public class GenericCollisionListener implements CollisionListener {
     @Override
     public void collide(CollisionEvent collisionEvent){
         if(collisionEvent.getOtherBody() instanceof EnemyProjectile){
+            //System.out.println("1");
             player.setHp(player.getHp()-5);
             System.out.println(player.getHp());
         }
