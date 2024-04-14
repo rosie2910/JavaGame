@@ -9,13 +9,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.logging.Level;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Game {
     JFrame frame;
     GameLevel world;
-    WorldView view;
+    //WorldView view;
+    BackgroundImage view;
+
+    KeyMover playerMover;
 
 
     public Game(){
@@ -33,8 +37,7 @@ public class Game {
 
 
         //view = new UserView(world, 800,600);
-
-        BackgroundImage view = new BackgroundImage(world, 800, 600, world.getPlayer());
+        view = new BackgroundImage(world, 800, 600, world.getPlayer());
         //HealthBar healthBar = new HealthBar(world.getPlayer(), world);
         //healthBar.setSize(100,50);
         frame.add(view);
@@ -43,7 +46,7 @@ public class Game {
 
         //frame.add(backgroundImage);
 
-        KeyMover playerMover = new KeyMover(view, world.getPlayer(), world.getEnemy(), world, world.getEnemy2());
+        playerMover = new KeyMover(view, world.getPlayer(), world.getEnemy(), world, world.getEnemy2());
         //view.requestFocus();
         view.addKeyListener(playerMover);
 
@@ -79,6 +82,19 @@ public class Game {
 
 
 
+    }
+
+    public void goToNextLevel(){
+        if(world instanceof Level1){
+            world.stop();
+            world = new Level2(this);
+
+            view.setWorld(world);
+
+            playerMover.setPlayer(world.getPlayer());
+            playerMover.setLevel(world);
+            world.start();
+        }
     }
 
 

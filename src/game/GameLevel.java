@@ -1,3 +1,4 @@
+
 package game;
 
 import city.cs.engine.BoxShape;
@@ -13,6 +14,7 @@ public abstract class GameLevel extends World {
 
     private final Enemy enemy2;
     EnemyProjectile projectile;
+    Door door;
 
     public GameLevel(Game game){
 
@@ -22,12 +24,18 @@ public abstract class GameLevel extends World {
         Collectible heart = new Collectible(this, enemy, player);
         CollectibleCollisionListener ccl = new CollectibleCollisionListener(player, heart);
         player.addCollisionListener(ccl);
+        door = new Door(this);
+        GenericCollisionListener gcl = new GenericCollisionListener(player, door, this, game);
+        player.addCollisionListener(gcl);
 
-        Color clear = new Color(0,0,0,0);
+
+        /*
         StaticBody wall = new StaticBody(this, new BoxShape(400,10));
         wall.setPosition(new Vec2(17,18));
         wall.setFillColor(clear);
         wall.setLineColor(clear);
+
+         */
 
 
         projectile = new EnemyProjectile(this, player, enemy);
@@ -44,6 +52,10 @@ public abstract class GameLevel extends World {
 
     public Enemy getEnemy2(){
         return enemy2;
+    }
+
+    public Door getDoor(){
+        return door;
     }
 
     public void play(Game game){

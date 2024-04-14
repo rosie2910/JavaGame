@@ -2,6 +2,7 @@ package game;
 
 import city.cs.engine.BodyImage;
 import city.cs.engine.UserView;
+import city.cs.engine.World;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +16,12 @@ public class BackgroundImage extends UserView {
     Player player;
     private int health;
 
+    GameLevel world;
+
+    Image level2BG = new ImageIcon("data/Level2BG.png").getImage();
     public BackgroundImage(GameLevel world, int width, int height, Player player){
         super(world, width, height);
+        this.world = world;
         background = new ImageIcon("data/Level1BG.jpeg").getImage();
         healthBar = new ImageIcon("data/FullHearts-1.png.png").getImage();
         this.player = player;
@@ -60,7 +65,14 @@ public class BackgroundImage extends UserView {
 
     @Override
     protected void paintBackground(Graphics2D g){
-        g.drawImage(background, 0, 0, this);
+
+        if(world instanceof Level1) {
+            g.drawImage(background, 0, 0, this);
+        }
+
+        else if(world instanceof Level2){
+            g.drawImage(level2BG, 0, 0, this);
+        }
 
     }
 
@@ -72,7 +84,7 @@ public class BackgroundImage extends UserView {
 
 
         health = player.getHp();
-        System.out.println(health);
+        //System.out.println(health);
 
 
 
@@ -90,7 +102,11 @@ public class BackgroundImage extends UserView {
     public void setHealth(int health){
         this.health = player.getHp();
     }
+
+    @Override
+    public void setWorld(World level){
+        super.setWorld(level);
+        world = ((GameLevel) level);
+    }
 }
-
-
 

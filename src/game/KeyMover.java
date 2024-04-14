@@ -109,6 +109,15 @@ public class KeyMover implements KeyListener {
         return key;
     }
 
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+
+    public void setLevel(GameLevel world){
+        this.world = world;
+    }
+
+
 
 
 
