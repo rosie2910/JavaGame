@@ -94,7 +94,7 @@ public class Game {
 
         JFrame debug = new DebugViewer(world, 500, 500);
         world.start();
-        world.play(this);
+        //world.play();
 
 
 
@@ -112,8 +112,9 @@ public class Game {
             playerMover.setPlayer(world.getPlayer());
             playerMover.setLevel(world);
             world.start();
+            //world.play();
         }
-        if(world instanceof Level2){
+        else if(world instanceof Level2){
             world.stop();
             world = new Level3(this);
 
@@ -122,6 +123,7 @@ public class Game {
             playerMover.setPlayer(world.getPlayer());
             playerMover.setLevel(world);
             world.start();
+            //world.play();
         }
     }
 

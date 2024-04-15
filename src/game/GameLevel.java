@@ -58,35 +58,16 @@ public abstract class GameLevel extends World {
         return door;
     }
 
-    public void play(Game game){
-        while (enemy.dead == false) {
-            //for (int i = 0; i < 7; i++) {
-            projectile = new EnemyProjectile(this, player, enemy);
-            projectile.attack(player, enemy);
 
-            //gcl = new GenericCollisionListener(player, projectile);
-            //player.addCollisionListener(gcl);
-            //projectile.addCollisionListener(gcl);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            projectile.destroy();
+//public abstract void play();
 
-        }
 
-        while(enemy2.dead == false){
-            EnemyProjectile projectile2 = new EnemyProjectile(this, player, enemy2);
-            projectile2.attack(player, enemy2);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            projectile2.destroy();
-        }
-    }
+
+
+
+
+
+
 
 
 

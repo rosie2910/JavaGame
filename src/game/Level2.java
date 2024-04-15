@@ -8,28 +8,37 @@ import javax.swing.*;
 
 public class Level2 extends GameLevel{
 
-    Enemy enemy;
 
-    Enemy enemy2;
+    Player player;
 
-    public Level2(Game game) {
+    public Level2(Game game){
         super(game);
-        this.enemy = getEnemy();
-        this.enemy2 = getEnemy2();
-        enemy.setPosition(new Vec2(4, 0));
-        enemy2.setPosition(new Vec2(5, 5));
-        getDoor().setPosition(new Vec2(0, 10));
+        this.player = getPlayer();
+        System.out.println(player.getHp());
+        player.setPosition(new Vec2(-9, 10));
+
+        getEnemy().setPosition(new Vec2(4,0));
+        getEnemy2().setPosition(new Vec2(5, 5));
+        getDoor().setPosition(new Vec2(0,10));
         JFrame debug = new DebugViewer(this, 500, 500);
+
+        EnemyShooting shoot = new EnemyShooting(getEnemy(), player, this);
+        EnemyShooting shoot2 = new EnemyShooting(getEnemy2(), player, this);
 
     }
 
 
+
+
     @Override
     public boolean isComplete() {
-        if(enemy.getEnemyCount() == 0){
+        if(getEnemy().getEnemyCount() == 0){
             return true;
         }
 
         return false;
     }
-    }
+
+
+
+}

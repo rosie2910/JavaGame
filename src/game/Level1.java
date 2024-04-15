@@ -11,56 +11,50 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Level1 extends GameLevel{
+public class Level1 extends GameLevel {
 
     static Player player;
     JFrame frame;
     BackgroundImage view;
-    Enemy enemy;
-    Enemy enemy2;
+
     EnemyProjectile projectile;
     GenericCollisionListener gcl;
     //Door door;
 
-    public Level1(Game game){
+    public Level1(Game game) {
         super(game);
         this.player = getPlayer();
         this.frame = frame;
-        this.enemy = getEnemy();
-        this.enemy2 = getEnemy2();
+
         //player = new Player(this);
         //enemy = new Enemy(this);
-        enemy.setPosition(new Vec2(3,4));
+        getEnemy().setPosition(new Vec2(3, 4));
         //enemy2 = new Enemy(this);
-        enemy2.setPosition(new Vec2(-3,-4));
+        getEnemy2().setPosition(new Vec2(-3, -4));
 
         getDoor().setPosition(new Vec2(-9, 10));
 
-
+        EnemyShooting shoot = new EnemyShooting(getEnemy(), player, this);
+        EnemyShooting shoot2 = new EnemyShooting(getEnemy2(), player, this);
 
     }
 
-    public Door getDoor(){
+
+    public Door getDoor() {
         return door;
     }
 
-
     @Override
     public boolean isComplete() {
-        if(enemy.getEnemyCount() == 0){
+        if (getEnemy().getEnemyCount() == 0) {
             return true;
         }
 
         return false;
     }
-
-
-
-
-
-
-
 }
+
+
 
 
 

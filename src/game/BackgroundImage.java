@@ -78,6 +78,9 @@ public class BackgroundImage extends UserView {
             g.drawImage(level3BG, 0,0,this);
         }
 
+
+
+
     }
 
 
@@ -87,7 +90,7 @@ public class BackgroundImage extends UserView {
         super.paintForeground(g);
 
 
-        health = player.getHp();
+        health = world.getPlayer().getHp();
         //System.out.println(health);
 
 
@@ -113,3 +116,4 @@ public class BackgroundImage extends UserView {
         world = ((GameLevel) level);
     }
 }
+
