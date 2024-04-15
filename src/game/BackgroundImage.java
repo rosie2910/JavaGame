@@ -19,6 +19,7 @@ public class BackgroundImage extends UserView {
     GameLevel world;
 
     Image level2BG = new ImageIcon("data/Level2BG.png").getImage();
+    Image level3BG = new ImageIcon("data/Level3BG.png").getImage();
     public BackgroundImage(GameLevel world, int width, int height, Player player){
         super(world, width, height);
         this.world = world;
@@ -73,6 +74,9 @@ public class BackgroundImage extends UserView {
         else if(world instanceof Level2){
             g.drawImage(level2BG, 0, 0, this);
         }
+        else if(world instanceof  Level3){
+            g.drawImage(level3BG, 0,0,this);
+        }
 
     }
 
@@ -109,4 +113,3 @@ public class BackgroundImage extends UserView {
         world = ((GameLevel) level);
     }
 }
-

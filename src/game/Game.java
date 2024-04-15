@@ -1,6 +1,8 @@
+
 package game;
 import city.cs.engine.*;
 import city.cs.engine.Shape;
+import com.sun.tools.javac.Main;
 import org.jbox2d.common.Vec2;
 
 import javax.swing.*;
@@ -26,25 +28,50 @@ public class Game {
 
 
 
-
+        world = new Level1(this);
+        view = new BackgroundImage(world, 800, 600, world.getPlayer());
         // JFrame debugViewer = new DebugViewer(world, 800,600);
         frame = new JFrame("Cat Quest");
+        //JFrame menuFrame = new JFrame("Cat Quest");
+        //menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension size = new Dimension(800, 600);
+        //menuFrame.setPreferredSize(size);
 
+        MainMenu mainMenu = new MainMenu(frame, view, this, world);
+        //menuFrame.add(mainMenu);
+        frame.add(mainMenu);
+
+        //menuFrame.setVisible(true);
+        frame.setResizable(false);
+        //menuFrame.pack();
 
         // world = new GameWorld(frame, view);
-        world = new Level1(this);
+
 
 
 
         //view = new UserView(world, 800,600);
-        view = new BackgroundImage(world, 800, 600, world.getPlayer());
+
         //HealthBar healthBar = new HealthBar(world.getPlayer(), world);
         //healthBar.setSize(100,50);
-        frame.add(view);
+        //frame.add(view);
         //frame.add(healthBar);
 
 
         //frame.add(backgroundImage);
+
+
+
+
+
+      /*
+      if(world.getPlayer().dead == true){
+          world.stop();
+      }
+      */
+
+
+
 
         playerMover = new KeyMover(view, world.getPlayer(), world.getEnemy(), world, world.getEnemy2());
         //view.requestFocus();
@@ -60,7 +87,7 @@ public class Game {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.setResizable(false);
-        Dimension size = new Dimension(800,600);
+        //Dimension size = new Dimension(800,600);
         frame.setPreferredSize(size);
         frame.pack();
         frame.setVisible(true);
@@ -69,25 +96,26 @@ public class Game {
         world.start();
         world.play(this);
 
-      /*
-      if(world.getPlayer().dead == true){
-          world.stop();
-      }
-
-       */
-
-
-
-
-
 
 
     }
+
+
 
     public void goToNextLevel(){
         if(world instanceof Level1){
             world.stop();
             world = new Level2(this);
+
+            view.setWorld(world);
+
+            playerMover.setPlayer(world.getPlayer());
+            playerMover.setLevel(world);
+            world.start();
+        }
+        if(world instanceof Level2){
+            world.stop();
+            world = new Level3(this);
 
             view.setWorld(world);
 
