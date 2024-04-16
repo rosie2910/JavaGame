@@ -27,6 +27,9 @@ public class KeyMover implements KeyListener {
 
     Enemy enemy2;
 
+    String projType = "";
+    int projTypeCounter = 1;
+
     BodyImage idleState = new BodyImage("data/StandingCat-1.png.png", 3);
 
 
@@ -79,8 +82,18 @@ public class KeyMover implements KeyListener {
                 x--;
                 player.setCharX(this);
                 break;
+            case KeyEvent.VK_Q:
+                projTypeCounter++;
+                if((projTypeCounter % 2) == 0){
+                    projType = "Water";
+                }
+                else if((projTypeCounter % 2) == 1){
+                    projType = "Magic";
+                }
+                break;
+
             case KeyEvent.VK_ENTER:
-                PlayerProjectile playerProjectile = new PlayerProjectile(world, player, enemy, enemy2);
+                PlayerProjectile playerProjectile = new PlayerProjectile(world, player, enemy, enemy2, this);
                 playerProjectile.shoot(this);
                 break;
 

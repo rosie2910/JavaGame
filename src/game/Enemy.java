@@ -5,6 +5,8 @@ import org.jbox2d.common.Vec2;
 
 
 
+
+
 public class Enemy extends Walker implements StepListener {
 
     private static final Shape enemyShape = new CircleShape(1);
@@ -41,9 +43,7 @@ public class Enemy extends Walker implements StepListener {
     public void attack(Player player,KeyMover playerMover, EnemyProjectile projectile){
         projectile.setLinearVelocity(new Vec2(player.getCharX(), player.getCharY()));
         projectile.applyForce(new Vec2(player.getCharX(), player.getCharY()));
-        if(this.dead == true){
-            projectile.destroy();
-        }
+
 
     }
 
@@ -54,9 +54,13 @@ public class Enemy extends Walker implements StepListener {
         CollectibleCollisionListener ccl = new CollectibleCollisionListener(player, collectible);
         player.addCollisionListener(ccl);
         enemyCount--;
+        System.out.println("Enemy Count: " + enemyCount);
+        //generateRandom();
         //this.setHp(50);
 
     }
+
+
 
     @Override
     public void setPosition(Vec2 position){

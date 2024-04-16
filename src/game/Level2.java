@@ -20,10 +20,14 @@ public class Level2 extends GameLevel{
         getEnemy().setPosition(new Vec2(4,0));
         getEnemy2().setPosition(new Vec2(5, 5));
         getDoor().setPosition(new Vec2(0,10));
-        JFrame debug = new DebugViewer(this, 500, 500);
+        //JFrame debug = new DebugViewer(this, 500, 500);
 
         EnemyShooting shoot = new EnemyShooting(getEnemy(), player, this);
         EnemyShooting shoot2 = new EnemyShooting(getEnemy2(), player, this);
+
+        //getEnemy().die(player);
+        //getEnemy2().die(player);
+
 
     }
 

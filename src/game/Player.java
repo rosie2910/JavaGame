@@ -9,6 +9,7 @@ public class Player extends DynamicBody {
     int charX = 0;
     int charY = 0;
     int hp = 100;
+    static int gemCount = 2;
     boolean dead = false;
     private static final Shape playerShape = new PolygonShape(-0.494f,0.492f, 0.492f,0.496f, 0.474f,-0.468f, -0.482f,-0.466f);
     // private static final Shape playerShape = new BoxShape(1,1);
@@ -49,6 +50,15 @@ public class Player extends DynamicBody {
     public int getHp(){
         return hp;
     }
+
+    public int getGemCount(){
+        return gemCount;
+    }
+
+    public void setGemCount(int gemCount){
+        this.gemCount = gemCount;
+    }
+
 
 
 

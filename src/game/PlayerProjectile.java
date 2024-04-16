@@ -1,14 +1,16 @@
+
 package game;
 
 import city.cs.engine.*;
 import org.jbox2d.common.Vec2;
 
 public class PlayerProjectile extends DynamicBody {
-    private static final BodyImage projectile = new BodyImage("data/projectile1.png", 1);
+    private static final BodyImage waterProjectile = new BodyImage("data/projectile1.png", 1);
+    private static final BodyImage magicProjectile = new BodyImage("data/MagicProj.png", 1);
     private static final Shape playerProjShape = new CircleShape(0.1f);
     Player player;
     Enemy enemy;
-    public PlayerProjectile(GameLevel world, Player player, Enemy enemy, Enemy enemy2){
+    public PlayerProjectile(GameLevel world, Player player, Enemy enemy, Enemy enemy2, KeyMover playerMover){
         super(world);
         Sensor gf = new Sensor(this, playerProjShape);
         PlayerShootSensor playerShootSensor = new PlayerShootSensor(this, player);
@@ -16,7 +18,12 @@ public class PlayerProjectile extends DynamicBody {
         gf.addSensorListener(playerShootSensor);
 
         this.setGravityScale(0);
-        this.addImage(projectile);
+        if(playerMover.projType.equals("Water")) {
+            this.addImage(waterProjectile);
+        }
+        if(playerMover.projType.equals("Magic")){
+            this.addImage(magicProjectile);
+        }
         this.setPosition(new Vec2(player.getPosition().x, player.getPosition().y));
     }
 

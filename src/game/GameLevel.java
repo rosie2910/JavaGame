@@ -38,7 +38,7 @@ public abstract class GameLevel extends World {
          */
 
 
-        projectile = new EnemyProjectile(this, player, enemy);
+        //projectile = new EnemyProjectile(this, player, enemy);
     }
 
 

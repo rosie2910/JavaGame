@@ -10,9 +10,11 @@ public class Level3 extends GameLevel{
     Enemy enemy;
     Enemy enemy2;
     Player player;
+    Merchant merchant;
     public Level3(Game game){
         super(game);
         player = getPlayer();
+        player.setHp(30);
         player.setPosition(new Vec2(0, 10));
         this.enemy = getEnemy();
         this.enemy2 = getEnemy2();
@@ -22,11 +24,19 @@ public class Level3 extends GameLevel{
 
         EnemyShooting shoot = new EnemyShooting(getEnemy(), player, this);
         EnemyShooting shoot2 = new EnemyShooting(getEnemy2(), player, this);
-        Merchant merchant = new Merchant(this);
+        merchant = new Merchant(this);
         merchant.setPosition(new Vec2(0,5));
         MerchantCollision mc = new MerchantCollision(player, merchant);
         player.addCollisionListener(mc);
+
+        getEnemy().die(player);
+        getEnemy2().die(player);
     }
+
+    public Merchant getMerchant(){
+        return merchant;
+    }
+
 
 
 

@@ -23,6 +23,8 @@ public class Game {
 
     KeyMover playerMover;
 
+    private SoundClip gameMusic;
+
 
     public Game(){
 
@@ -92,6 +94,17 @@ public class Game {
         frame.pack();
         frame.setVisible(true);
 
+        try{
+            gameMusic = new SoundClip("data/alexander-nakarada-metal-interlude.wav");
+            gameMusic.loop();
+        } catch (UnsupportedAudioFileException e) {
+            throw new RuntimeException(e);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         JFrame debug = new DebugViewer(world, 500, 500);
         world.start();
         //world.play();
@@ -100,12 +113,21 @@ public class Game {
 
     }
 
+    public SoundClip getGameMusic(){
+        return gameMusic;
+    }
+
 
 
     public void goToNextLevel(){
         if(world instanceof Level1){
+            Player player = world.getPlayer();
+            System.out.println(player.getHp());
             world.stop();
             world = new Level2(this);
+
+            world.getPlayer().setHp(player.getHp());
+            System.out.println(world.getPlayer().getHp());
 
             view.setWorld(world);
 

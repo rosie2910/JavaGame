@@ -24,7 +24,7 @@ public class PlayerShootSensor implements SensorListener {
         if(sensorEvent.getContactBody() instanceof Enemy) {
             Enemy e = (Enemy)sensorEvent.getContactBody();
             e.setHp(e.getHp() - 10);
-            System.out.println("Enemy: " + e.getHp());
+            //System.out.println("Enemy: " + e.getHp());
             projectile.destroy();
             if(e.getHp() <= 0){
                 e.die(player);
