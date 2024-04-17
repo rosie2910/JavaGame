@@ -1,4 +1,3 @@
-
 package game;
 import city.cs.engine.*;
 import city.cs.engine.Shape;
@@ -24,6 +23,7 @@ public class Game {
     KeyMover playerMover;
 
     private SoundClip gameMusic;
+    private SoundClip merchantMusic;
 
 
     public Game(){
@@ -138,6 +138,20 @@ public class Game {
         }
         else if(world instanceof Level2){
             world.stop();
+            gameMusic.stop();
+
+            try{
+                merchantMusic = new SoundClip("data/arthur-vyncke-uncertainty.wav");
+                merchantMusic.loop();
+            } catch (UnsupportedAudioFileException e) {
+                throw new RuntimeException(e);
+            } catch (LineUnavailableException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
             world = new Level3(this);
 
             view.setWorld(world);
@@ -155,3 +169,7 @@ public class Game {
     }
 
 }
+
+
+
+

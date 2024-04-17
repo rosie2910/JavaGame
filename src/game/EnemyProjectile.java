@@ -5,8 +5,10 @@ import org.jbox2d.common.Vec2;
 
 public class EnemyProjectile extends DynamicBody {
 
-    private static final BodyImage projectile = new BodyImage("data/projectile1.png", 1);
+    private static final BodyImage waterProjectile = new BodyImage("data/projectile1.png", 1);
+    private static final BodyImage magicProjectile = new BodyImage("data/MagicProj.png", 1);
     private static final Shape projShape = new CircleShape(0.1f);
+    String projType;
 
     public EnemyProjectile(GameLevel world, Player player, Enemy enemy) {
         super(world);
@@ -16,7 +18,15 @@ public class EnemyProjectile extends DynamicBody {
         sensor.addSensorListener(shootSensor);
 
         this.setGravityScale(0);
-        this.addImage(projectile);
+        if(enemy.enemyNum == 1){
+            projType = "Water";
+            this.addImage(waterProjectile);
+        }
+        else{
+            projType = "Magic";
+            this.addImage(magicProjectile);
+        }
+
         this.setPosition(new Vec2(enemy.getPosition().x, enemy.getPosition().y));
 
 
@@ -29,5 +39,4 @@ public class EnemyProjectile extends DynamicBody {
 
     }
 }
-
 

@@ -21,15 +21,25 @@ public class Enemy extends Walker implements StepListener {
     private final int range = 13;
     GameLevel world; // private this
 
+    int enemyNum;
+
     private static int enemyCount = 0;
 
 
     private static final BodyImage eye = new BodyImage("data/EyeEnemy.png", 3);
+    private static final BodyImage bomb = new BodyImage("data/Bomb.gif", 3);
 
     public Enemy(GameLevel world) {
         super(world, enemyShape);
         this.setGravityScale(0);
-        this.addImage(eye);
+        enemyNum = generateRandom();
+        if(enemyNum == 1){
+            this.addImage(eye);
+        }
+        if(enemyNum == 2){
+            this.addImage(bomb);
+        }
+
         world.addStepListener(this);
         //this.setPosition(new Vec2(enX, enY));
         this.startWalking(speed);
@@ -45,6 +55,16 @@ public class Enemy extends Walker implements StepListener {
         projectile.applyForce(new Vec2(player.getCharX(), player.getCharY()));
 
 
+    }
+
+    public int generateRandom(){
+        int min = 1;
+        int max = 2;
+
+        int randomInt = (int)Math.floor(Math.random() * (max - min + 1) + min);
+        System.out.println("random number in enemy: " + randomInt);
+
+        return randomInt;
     }
 
     public void die(Player player){

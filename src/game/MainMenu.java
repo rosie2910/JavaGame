@@ -18,6 +18,7 @@ public class MainMenu extends JPanel {
     JButton volUp;
     JButton volDown;
     JButton mute;
+    JButton back;
     double volume = 0.5;
     static boolean startGame;
 
@@ -33,6 +34,8 @@ public class MainMenu extends JPanel {
         volUp = new JButton("Volume Up");
         volDown = new JButton("Volume Down");
         mute = new JButton("Mute");
+        back = new JButton("Back");
+
 
         start.addActionListener(new ActionListener() {
             @Override
@@ -82,14 +85,31 @@ public class MainMenu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 howToPlay = new ImageIcon("data/HTP.png").getImage();
                 pressedHTP = true;
+
+
+            }
+        });
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressedHTP = false;
+                remove(back);
+                add(start);
+                add(volUp);
+                add(volDown);
+                add(mute);
+                add(htp);
+                //repaint();
+
             }
         });
         this.setLayout(null);
         start.setBounds(350, 300, 100, 25);
         htp.setBounds(350, 400, 100, 25);
-        volDown.setBounds(200, 500, 100, 25);
+        volDown.setBounds(200, 500, 110, 25);
         mute.setBounds(350, 500, 100, 25 );
         volUp.setBounds(500, 500, 100, 25);
+        back.setBounds(350, 500, 100, 25);
         add(start);
         add(htp);
         add(volDown);
@@ -102,12 +122,17 @@ public class MainMenu extends JPanel {
     protected void paintComponent(Graphics g) {
         if (pressedHTP == true){
             g.drawImage(howToPlay, 0, 0, this);
-            System.out.println("pressed");
+            remove(start);
+            remove(volUp);
+            remove(volDown);
+            remove(mute);
+            remove(htp);
+            add(back);
+            repaint();
 
         }
         else{
             g.drawImage(mm, 0, 0, this);
-            System.out.println("not pressed");
         }
 
 

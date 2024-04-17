@@ -10,6 +10,7 @@ public class PlayerProjectile extends DynamicBody {
     private static final Shape playerProjShape = new CircleShape(0.1f);
     Player player;
     Enemy enemy;
+    String projectileType;
     public PlayerProjectile(GameLevel world, Player player, Enemy enemy, Enemy enemy2, KeyMover playerMover){
         super(world);
         Sensor gf = new Sensor(this, playerProjShape);
@@ -18,10 +19,11 @@ public class PlayerProjectile extends DynamicBody {
         gf.addSensorListener(playerShootSensor);
 
         this.setGravityScale(0);
-        if(playerMover.projType.equals("Water")) {
+        projectileType = playerMover.projType;
+        if(projectileType.equals("Water")) {
             this.addImage(waterProjectile);
         }
-        if(playerMover.projType.equals("Magic")){
+        if(projectileType.equals("Magic")){
             this.addImage(magicProjectile);
         }
         this.setPosition(new Vec2(player.getPosition().x, player.getPosition().y));
